@@ -35,7 +35,6 @@ class MenuCollectionViewController: UIViewController {
         DispatchQueue.main.async {
             self.drinkCategories = drinkCategories
             self.collectionView.reloadData()
-            print(drinkCategories)
         }
     }
     
@@ -69,7 +68,7 @@ extension MenuCollectionViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
         let drink = drinkCategories[indexPath.section].drinks[indexPath.row]
-        let url = drink.thunbnailURL
+        let url = drink.thumbnailURL
         DrinkManager.shared.fetchImage(url: url) { image in
             guard let image = image else { return }
             DispatchQueue.main.async {

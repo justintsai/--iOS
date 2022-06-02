@@ -13,6 +13,6 @@ struct DrinkModel {
     let priceL: Int?
     let description: String
     let category: String
-    let imageURL: String
-    let thunbnailURL: URL
+    let imageURL: URL
+    let thumbnailURL: URL
 }

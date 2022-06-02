@@ -23,6 +23,8 @@
 		D04E5B882841F59000631AB3 /* stores.json in Resources */ = {isa = PBXBuildFile; fileRef = D04E5B872841F59000631AB3 /* stores.json */; };
 		D04E5B8A284214B800631AB3 /* DrinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E5B89284214B800631AB3 /* DrinkManager.swift */; };
 		D04E5B8C284277B100631AB3 /* DrinkCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E5B8B284277B100631AB3 /* DrinkCategory.swift */; };
+		D0FE178A284731A900802CD3 /* DrinkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE1789284731A900802CD3 /* DrinkTableViewController.swift */; };
+		D0FE178C284736C700802CD3 /* DrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE178B284736C700802CD3 /* DrinkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		D04E5B872841F59000631AB3 /* stores.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stores.json; sourceTree = "<group>"; };
 		D04E5B89284214B800631AB3 /* DrinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkManager.swift; sourceTree = "<group>"; };
 		D04E5B8B284277B100631AB3 /* DrinkCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCategory.swift; sourceTree = "<group>"; };
+		D0FE1789284731A900802CD3 /* DrinkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewController.swift; sourceTree = "<group>"; };
+		D0FE178B284736C700802CD3 /* DrinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				D04E5B66283F633500631AB3 /* MenuCollectionViewController.swift */,
+				D0FE1789284731A900802CD3 /* DrinkTableViewController.swift */,
+				D0FE178B284736C700802CD3 /* DrinkViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -198,11 +204,13 @@
 				D04E5B862841DEE400631AB3 /* OrderModel.swift in Sources */,
 				D04E5B67283F633500631AB3 /* MenuCollectionViewController.swift in Sources */,
 				D04E5B63283F633500631AB3 /* AppDelegate.swift in Sources */,
+				D0FE178A284731A900802CD3 /* DrinkTableViewController.swift in Sources */,
 				D04E5B8A284214B800631AB3 /* DrinkManager.swift in Sources */,
 				D04E5B8C284277B100631AB3 /* DrinkCategory.swift in Sources */,
 				D04E5B7C2841383300631AB3 /* MenuHeaderView.swift in Sources */,
 				D04E5B842841DD2700631AB3 /* DrinkModel.swift in Sources */,
 				D04E5B802841CFFF00631AB3 /* DrinkData.swift in Sources */,
+				D0FE178C284736C700802CD3 /* DrinkViewController.swift in Sources */,
 				D04E5B65283F633500631AB3 /* SceneDelegate.swift in Sources */,
 				D04E5B822841D01900631AB3 /* OrderData.swift in Sources */,
 			);

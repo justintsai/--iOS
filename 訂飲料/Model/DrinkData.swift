@@ -20,7 +20,7 @@ struct DrinkData: Codable {
         let priceL: Int?
         let description: String
         let category: String
-        let imageURL: String
+        let imageURL: URL
         let thumbnail: [Thumbnails]
     }
     

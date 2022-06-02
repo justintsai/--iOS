@@ -52,7 +52,7 @@ class DrinkManager {
             }.resume()
         }
     }
-    
+
     func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data,
@@ -63,6 +63,36 @@ class DrinkManager {
             }
         }.resume()
     }
+    
+//    func fetchImage(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            if let data = data {
+//                completion(.success(data))
+//            } else if let error = error {
+//                completion(.failure(error))
+//            }
+//        }.resume()
+//    }
+//
+//    func loadImage(url: URL) -> UIImage? {
+//        var image: UIImage?
+//        let tempDirectory = FileManager.default.temporaryDirectory
+//        let imageFileURL = tempDirectory.appendingPathComponent(url.lastPathComponent)
+//        if FileManager.default.fileExists(atPath: imageFileURL.path) {
+//            return UIImage(contentsOfFile: imageFileURL.path)
+//        } else {
+//            fetchImage(url: url) { result in
+//                switch result {
+//                case .success(let data):
+//                    image = UIImage(data: data)
+//                    try? data.write(to: imageFileURL)
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//            return image
+//        }
+//    }
     
     func decodeJsonData<T: Decodable>(_ data: Data) -> T {
         do {
@@ -85,7 +115,7 @@ class DrinkManager {
                 description: record.fields.description,
                 category: record.fields.category,
                 imageURL: record.fields.imageURL,
-                thunbnailURL: record.fields.thumbnail.first!.thumbnails.large.url
+                thumbnailURL: record.fields.thumbnail.first!.thumbnails.large.url
             )
             drinks.append(drink)
         }
