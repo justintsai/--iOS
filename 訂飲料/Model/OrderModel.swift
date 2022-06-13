@@ -1,20 +1,23 @@
-//
-//  OrderModel.swift
-//  訂飲料
-//
-//  Created by 蔡念澄 on 2022/5/28.
-//
-
 import Foundation
 
 struct OrderModel {
-    let orderNo: String
-    let customerName: String
-    let drink: String
-    let sugar: String
-    let ice: String
-    let toppings: [String]?
-    let count: Int
-    let size: String
-    let total: Int
+    let orderNo: String? = nil
+    var customerName: String = ""
+    var drink: DrinkModel
+    var sugar: String
+    var ice: String
+    var toppings: [String]?
+    var count: Int
+    var size: String
+    var total: Int = 0
+    
+    mutating func updateTotal(count: Int) {
+        var toppingPrice = 0
+        if let toppings = toppings {
+            for topping in toppings {
+                toppingPrice += toppingDict[topping] ?? 0
+            }
+        }
+        total = ((size == "M" ? drink.priceM! : drink.priceL!) + toppingPrice) * count
+    }
 }

@@ -1,10 +1,3 @@
-//
-//  DrinkData.swift
-//  訂飲料
-//
-//  Created by 蔡念澄 on 2022/5/28.
-//
-
 import Foundation
 
 struct DrinkData: Codable {
@@ -20,6 +13,8 @@ struct DrinkData: Codable {
         let priceL: Int?
         let description: String
         let category: String
+        let iced: Bool?
+        let sweet: Bool?
         let imageURL: URL
         let thumbnail: [Thumbnails]
     }

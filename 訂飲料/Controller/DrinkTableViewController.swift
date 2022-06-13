@@ -1,89 +1,153 @@
-//
-//  DrinkTableViewController.swift
-//  訂飲料
-//
-//  Created by 蔡念澄 on 2022/6/1.
-//
-
 import UIKit
 
 class DrinkTableViewController: UITableViewController {
+    
+    var drink: DrinkModel
+    var order: OrderModel {
+        didSet {
+            performSegue(withIdentifier: "unwindToDrinkView", sender: nil)
+        }
+    }
+    
+    var selectedToppingButtons: [UIButton] = []
+    
+    @IBOutlet weak var drinkImage: UIImageView!
+    @IBOutlet weak var drinkDescription: UILabel!
+    @IBOutlet weak var customerName: UITextField!
+    @IBOutlet var sizeButtons: [UIButton]!
+    @IBOutlet var iceLevel: [UIButton]!
+    @IBOutlet var sugarLevel: [UIButton]!
+    @IBOutlet var toppingButtons: [UIButton]!
+    
+    @IBAction func sizeButtonPressed(_ sender: UIButton) {
+        order.size = (sender.titleLabel?.text)!
+        changeButtonColor(buttons: sizeButtons, selectedButtons: [sender])
+    }
+    
+    @IBAction func iceButtonPressed(_ sender: UIButton) {
+        order.ice = (sender.titleLabel?.text)!
+        changeButtonColor(buttons: iceLevel, selectedButtons: [sender])
+    }
+    
+    @IBAction func sugarButtonPressed(_ sender: UIButton) {
+        order.sugar = (sender.titleLabel?.text)!
+        changeButtonColor(buttons: sugarLevel, selectedButtons: [sender])
+    }
+    
+    @IBAction func toppingButtonPressed(_ sender: UIButton) {
+        if selectedToppingButtons.contains(sender) {
+            selectedToppingButtons.removeAll(where: { $0 == sender} )
+        } else {
+            selectedToppingButtons.append(sender)
+        }
+        order.toppings = selectedToppingButtons.map{($0.titleLabel?.text)!}
+        changeButtonColor(buttons: toppingButtons, selectedButtons: selectedToppingButtons)
+    }
+    
+    
+    init?(coder: NSCoder, selectedDrink: DrinkModel, order: OrderModel) {
+        self.drink = selectedDrink
+        self.order = order
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        updateUI()
+        customerName.delegate = self
+        customerName.addTarget(self, action: #selector(DrinkTableViewController.textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        order.customerName = customerName.text!
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    func updateUI() {
+        let url = drink.imageURL
+        DataManager.shared.fetchImage(url: url) { image in
+            guard let image = image else { return }
+            DispatchQueue.main.async {
+                self.drinkImage.image = image
+            }
+        }
+        drinkDescription.text = drink.description
+        
+        if drink.priceM == nil {
+            sizeButtons[0].isHidden = true
+            sizeButtonPressed(sizeButtons[1])
+        } else if drink.priceL == nil {
+            sizeButtons[1].isHidden = true
+            sizeButtonPressed(sizeButtons[0])
+        } else {
+            sizeButtonPressed(sizeButtons[0])
+        }
+        
+        if drink.iced ?? false {
+            for i in 5...7 {
+                iceLevel[i].isHidden = true
+            }
+        }
+        changeButtonColor(buttons: iceLevel, selectedButtons: [iceLevel[0]])
+        
+        if drink.sweet ?? false {
+            for i in 1...6 {
+                sugarLevel[i].isHidden = true
+            }
+        } else {
+            sugarLevel[7].isHidden = true
+        }
+        changeButtonColor(buttons: sugarLevel, selectedButtons: [sugarLevel[0]])
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func changeButtonColor(buttons: [UIButton], selectedButtons: [UIButton]) {
+        for button in buttons {
+            button.configuration?.baseBackgroundColor = UIColor(named: "lightblue")
+        }
+        for button in selectedButtons {
+            button.configuration?.baseBackgroundColor = UIColor(named:"blue")
+        }
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
+    // MARK: - Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "unwindToDrinkView" {
+            let controller = segue.destination as! DrinkViewController
+            controller.order = order
+        }
     }
-    */
-
+    
 }
+
+extension DrinkTableViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+    }
+}
+
+//extension UIImageView {
+//    var contentClippingRect: CGRect {
+//        guard let image = image else { return bounds }
+//        guard contentMode == .scaleAspectFit else { return bounds }
+//        guard image.size.width > 0 && image.size.height > 0 else { return bounds }
+//
+//        let scale: CGFloat
+//        if image.size.width > image.size.height {
+//            scale = bounds.width / image.size.width
+//        } else {
+//            scale = bounds.height / image.size.height
+//        }
+//
+//        let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+//        let x = (bounds.width - size.width) / 2.0
+//        let y = (bounds.height - size.height) / 2.0
+//
+//        return CGRect(x: x, y: y, width: size.width, height: size.height)
+//    }
+//}

@@ -17,17 +17,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5gZ-JF-MDF">
-                                <rect key="frame" x="0.0" y="44" width="390" height="702"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5gZ-JF-MDF">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                                 <subviews>
-                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B4p-mM-QTh">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="622"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haB-z9-ES7">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="胭脂多多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3D-cz-u0i" userLabel="Drink Name">
+                                                <rect key="frame" x="146.33333333333334" y="10.666666666666666" width="97.333333333333343" height="28.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <color key="textColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCl-xj-dBx">
+                                                <rect key="frame" x="10" y="5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ZCl-xj-dBx" secondAttribute="height" multiplier="1:1" id="JHG-gY-TVh"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <segue destination="Mhu-KA-VTe" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMenu:" id="fHD-SB-npi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.00041202479039999999" green="0.24221342800000001" blue="0.32075604800000002" alpha="0.90125724337748347" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="e3D-cz-u0i" firstAttribute="centerY" secondItem="haB-z9-ES7" secondAttribute="centerY" id="CTn-u4-sGe"/>
+                                            <constraint firstItem="ZCl-xj-dBx" firstAttribute="leading" secondItem="haB-z9-ES7" secondAttribute="leading" constant="10" id="Ca2-kl-eIY"/>
+                                            <constraint firstItem="e3D-cz-u0i" firstAttribute="centerX" secondItem="haB-z9-ES7" secondAttribute="centerX" id="HYL-Hc-FOC"/>
+                                            <constraint firstItem="ZCl-xj-dBx" firstAttribute="centerY" secondItem="haB-z9-ES7" secondAttribute="centerY" id="kW5-Oy-OZz"/>
+                                            <constraint firstAttribute="height" constant="50" id="l4R-7q-opz"/>
+                                        </constraints>
+                                    </view>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4p-mM-QTh">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="660"/>
                                         <connections>
-                                            <segue destination="EPz-vy-6vg" kind="embed" id="grG-wc-nkJ"/>
+                                            <segue destination="EPz-vy-6vg" kind="embed" identifier="showDrinkTableView" destinationCreationSelector="showDrinkTableView:" id="grG-wc-nkJ"/>
                                         </connections>
                                     </containerView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Hm-Cg-L0f">
-                                        <rect key="frame" x="0.0" y="622" width="390" height="80"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Hm-Cg-L0f">
+                                        <rect key="frame" x="0.0" y="710" width="390" height="80"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1Lb-fc-sk7">
                                                 <rect key="frame" x="20" y="8" width="350" height="64"/>
@@ -44,10 +74,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9N-Iu-9zS">
                                                                 <rect key="frame" x="0.0" y="32" width="175" height="32"/>
                                                                 <subviews>
-                                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="iB6-Z9-QgG">
+                                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="iB6-Z9-QgG">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
                                                                         <color key="backgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="tintColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <connections>
+                                                                            <action selector="stepperValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="IVP-II-VTv"/>
+                                                                        </connections>
                                                                     </stepper>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 杯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oah-ty-kEd" userLabel="Count Label">
                                                                         <rect key="frame" x="94" y="0.0" width="81" height="32"/>
@@ -63,10 +96,13 @@
                                                         <rect key="frame" x="175" y="0.0" width="175" height="64"/>
                                                         <color key="tintColor" red="0.0" green="0.37737440291168522" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="加入購物車">
+                                                        <buttonConfiguration key="configuration" style="filled" title="送出訂單">
                                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                                                             <color key="baseForegroundColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="placeOrderButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5og-2g-Gvu"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -89,11 +125,20 @@
                             <constraint firstItem="5gZ-JF-MDF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3ve-Tr-Won"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5gZ-JF-MDF" secondAttribute="bottom" id="B0V-Ye-GZL"/>
                             <constraint firstAttribute="trailing" secondItem="5gZ-JF-MDF" secondAttribute="trailing" id="Eat-5a-5oK"/>
+                            <constraint firstItem="5gZ-JF-MDF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="JOp-en-gIG"/>
+                            <constraint firstItem="5gZ-JF-MDF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="uMc-RQ-M82"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SId-yN-bHR"/>
+                    <connections>
+                        <outlet property="countLabel" destination="oah-ty-kEd" id="siz-GZ-G6k"/>
+                        <outlet property="drinkName" destination="e3D-cz-u0i" id="JuQ-Dy-i1e"/>
+                        <outlet property="priceLabel" destination="5s0-Vs-Xxc" id="Mwh-AW-Ol5"/>
+                        <outlet property="stepper" destination="iB6-Z9-QgG" id="zlO-sg-qKT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Mhu-KA-VTe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1710.7692307692307" y="-377.48815165876778"/>
         </scene>
@@ -101,50 +146,77 @@
         <scene sceneID="lcP-0Y-e20">
             <objects>
                 <tableViewController id="EPz-vy-6vg" customClass="DrinkTableViewController" customModule="訂飲料" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="gTm-Ul-2jQ">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="1125"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="gTm-Ul-2jQ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="1075"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="APU-2S-JZC">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="322"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXv-MT-PUU">
-                                    <rect key="frame" x="0.0" y="29" width="390" height="171"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="胭脂多多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEK-Ob-VDe" userLabel="Drink Name">
-                                    <rect key="frame" x="160.33333333333334" y="0.0" width="69.333333333333343" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                    <color key="textColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j1l-DH-GCo">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="322"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXv-MT-PUU">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="292.66666666666669"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="wXv-MT-PUU" secondAttribute="height" multiplier="4:3" id="uQ4-MF-82c"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蜜桃裡的兒時記憶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA5-vv-mSk" userLabel="Drink Description">
+                                            <rect key="frame" x="0.0" y="292.66666666666669" width="390" height="29.333333333333314"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="gNM-Zb-xlW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="pA5-vv-mSk" secondAttribute="bottom" id="5we-s4-5ND"/>
+                                        <constraint firstItem="pA5-vv-mSk" firstAttribute="top" secondItem="wXv-MT-PUU" secondAttribute="bottom" id="C7f-m4-SQw"/>
+                                        <constraint firstAttribute="bottom" secondItem="pA5-vv-mSk" secondAttribute="bottom" id="GIN-Pu-cCf"/>
+                                        <constraint firstItem="wXv-MT-PUU" firstAttribute="top" secondItem="j1l-DH-GCo" secondAttribute="top" id="JYa-ff-GyE"/>
+                                        <constraint firstItem="pA5-vv-mSk" firstAttribute="top" secondItem="wXv-MT-PUU" secondAttribute="bottom" id="P5q-PF-G2l"/>
+                                        <constraint firstAttribute="trailing" secondItem="wXv-MT-PUU" secondAttribute="trailing" id="SGK-Jc-VcT"/>
+                                        <constraint firstAttribute="trailing" secondItem="pA5-vv-mSk" secondAttribute="trailing" id="aNV-0f-c18"/>
+                                        <constraint firstItem="pA5-vv-mSk" firstAttribute="centerX" secondItem="j1l-DH-GCo" secondAttribute="centerX" id="fSd-ct-HOl"/>
+                                        <constraint firstItem="wXv-MT-PUU" firstAttribute="leading" secondItem="j1l-DH-GCo" secondAttribute="leading" id="iRE-oP-Civ"/>
+                                        <constraint firstItem="pA5-vv-mSk" firstAttribute="leading" secondItem="j1l-DH-GCo" secondAttribute="leading" id="zbI-4g-Xdu"/>
+                                    </constraints>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" red="0.00041202479039999999" green="0.24221342800000001" blue="0.32075604800000002" alpha="0.89960161423841056" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="qEK-Ob-VDe" firstAttribute="centerX" secondItem="APU-2S-JZC" secondAttribute="centerX" id="zce-Ll-P0m"/>
+                                <constraint firstItem="j1l-DH-GCo" firstAttribute="top" secondItem="APU-2S-JZC" secondAttribute="top" id="BbS-tE-JX1"/>
+                                <constraint firstAttribute="bottom" secondItem="j1l-DH-GCo" secondAttribute="bottom" id="FG9-ng-hL5"/>
+                                <constraint firstAttribute="trailing" secondItem="j1l-DH-GCo" secondAttribute="trailing" id="Y4Y-37-nhD"/>
+                                <constraint firstItem="j1l-DH-GCo" firstAttribute="leading" secondItem="APU-2S-JZC" secondAttribute="leading" id="p9i-ug-wdn"/>
                             </constraints>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="訂購人" id="MD6-m4-JY2" userLabel="訂購人">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QJs-hp-5Dp">
-                                        <rect key="frame" x="0.0" y="244.66666603088379" width="390" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="QJs-hp-5Dp">
+                                        <rect key="frame" x="20" y="371" width="350" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QJs-hp-5Dp" id="dAH-Rg-SOg">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="選填" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vha-0R-kFr">
-                                                    <rect key="frame" x="80" y="4.3333339691162109" width="230" height="34"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vha-0R-kFr">
+                                                    <rect key="frame" x="20" y="5" width="310" height="34"/>
                                                     <color key="textColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Vha-0R-kFr" firstAttribute="leading" secondItem="dAH-Rg-SOg" secondAttribute="leading" constant="80" id="PDn-St-Ino"/>
-                                                <constraint firstAttribute="trailing" secondItem="Vha-0R-kFr" secondAttribute="trailing" constant="80" id="vzK-eg-UiV"/>
+                                                <constraint firstItem="Vha-0R-kFr" firstAttribute="centerY" secondItem="dAH-Rg-SOg" secondAttribute="centerY" id="3en-S8-r1i"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vha-0R-kFr" secondAttribute="trailing" constant="20" id="FmX-Da-7fJ"/>
+                                                <constraint firstItem="Vha-0R-kFr" firstAttribute="leading" secondItem="dAH-Rg-SOg" secondAttribute="leading" constant="20" id="Ns3-iV-OBv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -152,25 +224,48 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="容量" id="eew-sF-VHX" userLabel="容量">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="XOd-IQ-Nrt">
-                                        <rect key="frame" x="0.0" y="355.99999809265137" width="390" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="XOd-IQ-Nrt">
+                                        <rect key="frame" x="20" y="464.66666603088379" width="350" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XOd-IQ-Nrt" id="5Hq-1k-J3K">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="enr-vs-CPG">
-                                                    <rect key="frame" x="80" y="6.3333339691162109" width="230" height="32"/>
-                                                    <segments>
-                                                        <segment title="M"/>
-                                                        <segment title="L"/>
-                                                    </segments>
-                                                    <color key="selectedSegmentTintColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </segmentedControl>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="L4O-ZK-bMo">
+                                                    <rect key="frame" x="20" y="11" width="310" height="31"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oQ-gL-0mI" userLabel="M">
+                                                            <rect key="frame" x="0.0" y="0.0" width="145" height="31"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="filled" title="M" buttonSize="medium">
+                                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="baseBackgroundColor" name="blue"/>
+                                                            </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="sizeButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="8jq-Jx-f11"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfE-in-JRQ" userLabel="L">
+                                                            <rect key="frame" x="165" y="0.0" width="145" height="31"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="filled" title="L" buttonSize="medium">
+                                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="baseBackgroundColor" name="blue"/>
+                                                            </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="sizeButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="rfS-Ph-9L7"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="enr-vs-CPG" secondAttribute="trailing" constant="80" id="AaT-dd-thQ"/>
-                                                <constraint firstItem="enr-vs-CPG" firstAttribute="leading" secondItem="5Hq-1k-J3K" secondAttribute="leading" constant="80" id="bXP-9Q-Ayz"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="L4O-ZK-bMo" secondAttribute="bottom" id="9Gz-eK-v9Q"/>
+                                                <constraint firstItem="L4O-ZK-bMo" firstAttribute="top" secondItem="5Hq-1k-J3K" secondAttribute="topMargin" id="P3H-lK-mQf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="L4O-ZK-bMo" secondAttribute="trailing" id="fvP-6o-0Kh"/>
+                                                <constraint firstItem="L4O-ZK-bMo" firstAttribute="leading" secondItem="5Hq-1k-J3K" secondAttribute="leadingMargin" id="mWu-b4-ytV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -178,100 +273,124 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="冰塊" id="tli-sh-wIf" userLabel="冰塊">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SEZ-vj-t8N">
-                                        <rect key="frame" x="0.0" y="467.33333015441895" width="390" height="135"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="SEZ-vj-t8N">
+                                        <rect key="frame" x="20" y="567.33333206176758" width="350" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SEZ-vj-t8N" id="5UK-5H-I5y">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uPE-Qi-f2z">
-                                                    <rect key="frame" x="20" y="11" width="350" height="113"/>
+                                                    <rect key="frame" x="20" y="11" width="310" height="113"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="X4z-U0-GRe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="113"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="113"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmC-X0-al5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="正常冰" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="efc-Wd-s37"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxf-X6-CKK">
-                                                                    <rect key="frame" x="0.0" y="41" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="41" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="去冰" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="Cl1-MF-0xg"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ui8-Wj-L6q">
-                                                                    <rect key="frame" x="0.0" y="82" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="82" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="溫" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="MxC-JM-BsN"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="coL-7t-Y3Z">
-                                                            <rect key="frame" x="120" y="0.0" width="110" height="113"/>
+                                                            <rect key="frame" x="106.66666666666666" y="0.0" width="96.666666666666657" height="113"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBh-rp-bem">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="少冰" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="G4R-pG-y8s"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50d-vT-eQt">
-                                                                    <rect key="frame" x="0.0" y="41" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="41" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="完全去冰" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="7U5-TH-Yop"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmf-ZN-Q5h">
-                                                                    <rect key="frame" x="0.0" y="82" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="82" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="熱" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="vdD-Hp-1nX"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bzq-rG-OMv">
-                                                            <rect key="frame" x="240" y="0.0" width="110" height="72"/>
+                                                            <rect key="frame" x="213.33333333333334" y="0.0" width="96.666666666666657" height="72"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciS-MC-B7V">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="微冰" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="ONC-Fj-cn0"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvq-Nb-mcH">
-                                                                    <rect key="frame" x="0.0" y="41" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="41" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="常溫" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="iceButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="ixj-qA-grJ"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -290,91 +409,124 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="甜度" id="MyR-cJ-QWv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="opX-fI-ETj">
-                                        <rect key="frame" x="0.0" y="669.66666221618652" width="390" height="135"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="opX-fI-ETj">
+                                        <rect key="frame" x="20" y="751.99999809265137" width="350" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="opX-fI-ETj" id="bFw-z4-oPH">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rbp-Mu-6ST">
-                                                    <rect key="frame" x="20" y="11" width="350" height="113"/>
+                                                    <rect key="frame" x="20" y="11" width="310" height="113"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="U6Y-yr-uJ6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="113"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="113"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eq-cx-iEJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="正常糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="abh-VS-BJp"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-jL-K1q">
-                                                                    <rect key="frame" x="0.0" y="41" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="41" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="微糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="E3u-dP-7Af"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7S-No-DHC">
-                                                                    <rect key="frame" x="0.0" y="82" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="82" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="無糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="SJj-Fq-Vj7"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vEO-VV-sph">
-                                                            <rect key="frame" x="120" y="0.0" width="110" height="72"/>
+                                                            <rect key="frame" x="106.66666666666666" y="0.0" width="96.666666666666657" height="113"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5h-1Z-MYE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="少糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="ZyP-vh-RMb"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GI3-qK-jsc">
-                                                                    <rect key="frame" x="0.0" y="41" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="41" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="二分糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="gOn-Pg-2p3"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8O0-wX-7ow" userLabel="減糖">
+                                                                    <rect key="frame" x="0.0" y="82" width="96.666666666666671" height="31"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="filled" title="減糖" buttonSize="medium">
+                                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
+                                                                    </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="IOC-xb-xPA"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6op-Jl-3tG">
-                                                            <rect key="frame" x="240" y="0.0" width="110" height="72"/>
+                                                            <rect key="frame" x="213.33333333333334" y="0.0" width="96.666666666666657" height="72"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1d-1q-PTv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="半糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="4fC-Hm-3Pf"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igw-u8-yuu">
-                                                                    <rect key="frame" x="0.0" y="41" width="110" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="41" width="96.666666666666671" height="31"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="一分糖" buttonSize="medium">
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="baseBackgroundColor" name="blue"/>
                                                                     </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="sugarButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="Pno-bH-uBI"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -393,42 +545,51 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="加料" id="gJy-p4-2Rg" userLabel="加料">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="duS-xZ-yB4">
-                                        <rect key="frame" x="0.0" y="871.9999942779541" width="390" height="53"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="duS-xZ-yB4">
+                                        <rect key="frame" x="20" y="936.66666412353516" width="350" height="68.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duS-xZ-yB4" id="kA2-wY-qaT">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="68.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ymb-h1-y1s">
-                                                    <rect key="frame" x="20" y="11" width="350" height="31"/>
+                                                    <rect key="frame" x="20" y="11.000000000000004" width="310" height="46.333333333333343"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfO-zW-IwT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="46.333333333333336"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="白玉" buttonSize="medium">
+                                                            <buttonConfiguration key="configuration" style="filled" title="白玉" subtitle="+$10" buttonSize="medium">
                                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="baseBackgroundColor" name="lightblue"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="toppingButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="PJW-Mo-a3k"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-Jz-40e">
-                                                            <rect key="frame" x="120" y="0.0" width="110" height="31"/>
+                                                            <rect key="frame" x="106.66666666666666" y="0.0" width="96.666666666666657" height="46.333333333333336"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="水玉" buttonSize="medium">
+                                                            <buttonConfiguration key="configuration" style="filled" title="水玉" subtitle="+$10" buttonSize="medium">
                                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="baseBackgroundColor" name="lightblue"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="toppingButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="fLF-g1-Sbf"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cw-qQ-JsH">
-                                                            <rect key="frame" x="240" y="0.0" width="110" height="31"/>
+                                                            <rect key="frame" x="213.33333333333334" y="0.0" width="96.666666666666657" height="46.333333333333336"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="百香蒟蒻凍" buttonSize="medium">
+                                                            <buttonConfiguration key="configuration" style="filled" title="百香蒟蒻凍" subtitle="+$20" buttonSize="medium">
                                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <color key="baseBackgroundColor" red="0.0" green="0.37737440290000002" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="baseBackgroundColor" name="lightblue"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="toppingButtonPressed:" destination="EPz-vy-6vg" eventType="touchUpInside" id="mda-w9-a7J"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -449,11 +610,39 @@
                             <outlet property="delegate" destination="EPz-vy-6vg" id="xR9-jz-0WB"/>
                         </connections>
                     </tableView>
-                    <size key="freeformSize" width="390" height="1125"/>
+                    <size key="freeformSize" width="390" height="1075"/>
+                    <connections>
+                        <outlet property="customerName" destination="Vha-0R-kFr" id="gOK-Wn-U9I"/>
+                        <outlet property="drinkDescription" destination="pA5-vv-mSk" id="Z0R-Bz-tV5"/>
+                        <outlet property="drinkImage" destination="wXv-MT-PUU" id="eRQ-Mz-j8g"/>
+                        <outletCollection property="iceLevel" destination="mmC-X0-al5" collectionClass="NSMutableArray" id="FgH-Gg-BVC"/>
+                        <outletCollection property="iceLevel" destination="TBh-rp-bem" collectionClass="NSMutableArray" id="hyW-Dl-HSX"/>
+                        <outletCollection property="iceLevel" destination="ciS-MC-B7V" collectionClass="NSMutableArray" id="uDi-rG-vaJ"/>
+                        <outletCollection property="iceLevel" destination="Oxf-X6-CKK" collectionClass="NSMutableArray" id="26S-Ki-1RL"/>
+                        <outletCollection property="iceLevel" destination="50d-vT-eQt" collectionClass="NSMutableArray" id="glx-rg-6aK"/>
+                        <outletCollection property="iceLevel" destination="Cvq-Nb-mcH" collectionClass="NSMutableArray" id="TwE-iq-LEK"/>
+                        <outletCollection property="iceLevel" destination="ui8-Wj-L6q" collectionClass="NSMutableArray" id="0gQ-Ja-IdO"/>
+                        <outletCollection property="iceLevel" destination="hmf-ZN-Q5h" collectionClass="NSMutableArray" id="NPU-Au-Dg2"/>
+                        <outletCollection property="sugarLevel" destination="1eq-cx-iEJ" collectionClass="NSMutableArray" id="vZm-3B-7ES"/>
+                        <outletCollection property="sugarLevel" destination="X5h-1Z-MYE" collectionClass="NSMutableArray" id="CyF-H6-nmj"/>
+                        <outletCollection property="sugarLevel" destination="X1d-1q-PTv" collectionClass="NSMutableArray" id="Db5-lL-oDE"/>
+                        <outletCollection property="sugarLevel" destination="Glf-jL-K1q" collectionClass="NSMutableArray" id="fHh-4g-u2A"/>
+                        <outletCollection property="sugarLevel" destination="GI3-qK-jsc" collectionClass="NSMutableArray" id="oR7-8e-SzW"/>
+                        <outletCollection property="sugarLevel" destination="igw-u8-yuu" collectionClass="NSMutableArray" id="KvZ-Mb-S9g"/>
+                        <outletCollection property="sugarLevel" destination="c7S-No-DHC" collectionClass="NSMutableArray" id="g9T-ek-Eyz"/>
+                        <outletCollection property="toppingButtons" destination="KfO-zW-IwT" collectionClass="NSMutableArray" id="cYU-23-41b"/>
+                        <outletCollection property="toppingButtons" destination="uAc-Jz-40e" collectionClass="NSMutableArray" id="Dbw-xo-PnS"/>
+                        <outletCollection property="toppingButtons" destination="9cw-qQ-JsH" collectionClass="NSMutableArray" id="amH-jV-dR0"/>
+                        <outletCollection property="sizeButtons" destination="3oQ-gL-0mI" collectionClass="NSMutableArray" id="dHq-K8-Jac"/>
+                        <outletCollection property="sizeButtons" destination="FfE-in-JRQ" collectionClass="NSMutableArray" id="Gdq-vf-KXr"/>
+                        <outletCollection property="sugarLevel" destination="8O0-wX-7ow" collectionClass="NSMutableArray" id="ouU-tZ-hkg"/>
+                        <segue destination="Gaf-aw-jXO" kind="unwind" identifier="unwindToDrinkView" unwindAction="unwindToDrinkView:" id="BX5-Hh-sgH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8RB-lt-mX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Gaf-aw-jXO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2561.5384615384614" y="-277.60663507109001"/>
+            <point key="canvasLocation" x="2561.5384615384614" y="-295.37914691943126"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="I8d-7i-N3D">
@@ -553,7 +742,7 @@
                                             <outlet property="drinkPrice" destination="Hhz-tt-tD4" id="gZe-8j-yDq"/>
                                             <outlet property="drinkThumbnail" destination="KxS-Wr-w9U" id="1Ph-sr-6by"/>
                                             <outlet property="indicatorView" destination="JTk-Ei-1pQ" id="vtB-Oe-U1O"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="3Ha-kD-W1C"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="showDrinkView" destinationCreationSelector="showDrinkView:" id="3Ha-kD-W1C"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -634,7 +823,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsf-Ro-WGf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848" y="899"/>
+            <point key="canvasLocation" x="126" y="931"/>
         </scene>
     </scenes>
     <resources>
@@ -645,6 +834,12 @@
         <image name="list.bullet.rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <image name="takeoutbag.and.cup.and.straw" catalog="system" width="128" height="110"/>
         <image name="takeoutbag.and.cup.and.straw.fill" catalog="system" width="128" height="110"/>
+        <namedColor name="blue">
+            <color red="0.0" green="0.37599998712539673" blue="0.50300002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightblue">
+            <color red="0.50099998712539673" green="0.68900001049041748" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

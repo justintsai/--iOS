@@ -1,10 +1,3 @@
-//
-//  MenuCollectionViewController.swift
-//  訂飲料
-//
-//  Created by 蔡念澄 on 2022/5/26.
-//
-
 import UIKit
 
 class MenuCollectionViewController: UIViewController {
@@ -17,7 +10,7 @@ class MenuCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DrinkManager.shared.fetchMenu(tableName: "Menu") { result in
+        DataManager.shared.fetchMenu(tableName: "Menu") { result in
             switch result {
             case .success(let drinkCategories):
                 self.updateUI(with: drinkCategories)
@@ -46,6 +39,16 @@ class MenuCollectionViewController: UIViewController {
         }
     }
     
+    // MARK: - Segue
+    @IBSegueAction func showDrinkView(_ coder: NSCoder) -> DrinkViewController? {
+        guard let indexPath = collectionView.indexPathsForSelectedItems else { return DrinkViewController(coder: coder, selectedDrink: drinkCategories[0].drinks[0])}
+        let drink = drinkCategories[indexPath[0][0]].drinks[indexPath[0][1]]
+        return DrinkViewController(coder: coder, selectedDrink: drink)
+    }
+    
+    @IBAction func unwindToMenu(_ segue: UIStoryboardSegue) {
+    }
+    
 }
 
 // MARK: - Collection View
@@ -69,7 +72,7 @@ extension MenuCollectionViewController: UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
         let drink = drinkCategories[indexPath.section].drinks[indexPath.row]
         let url = drink.thumbnailURL
-        DrinkManager.shared.fetchImage(url: url) { image in
+        DataManager.shared.fetchImage(url: url) { image in
             guard let image = image else { return }
             DispatchQueue.main.async {
                 cell.drinkThumbnail.image = image
@@ -78,7 +81,7 @@ extension MenuCollectionViewController: UICollectionViewDelegate, UICollectionVi
         }
         cell.drinkName.text = drink.name
         if drink.priceM != nil && drink.priceL != nil {
-            cell.drinkPrice.text = "M \(drink.priceM!)" + " / " + "L \(drink.priceL!)"
+            cell.drinkPrice.text = "M \(drink.priceM!) / L \(drink.priceL!)"
         } else if let priceM = drink.priceM {
             cell.drinkPrice.text = "M \(priceM)"
         } else {
@@ -95,7 +98,7 @@ extension MenuCollectionViewController: UICollectionViewDelegate, UICollectionVi
         let flowLayout = UICollectionViewFlowLayout()
         let width = floor((collectionView.bounds.width - itemSpace * (columnCount-1)) / columnCount)
         flowLayout.itemSize = CGSize(width: width, height: width+50)
-        flowLayout.estimatedItemSize = .zero
+        flowLayout.estimatedItemSize = .zero //UICollectionViewFlowLayout.automaticSize
         flowLayout.minimumInteritemSpacing = itemSpace
         flowLayout.minimumLineSpacing = itemSpace
         flowLayout.headerReferenceSize = CGSize(width: 0, height: 50)

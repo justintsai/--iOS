@@ -1,10 +1,3 @@
-//
-//  OrderData.swift
-//  訂飲料
-//
-//  Created by 蔡念澄 on 2022/5/28.
-//
-
 import Foundation
 
 struct OrderData: Codable {
@@ -15,7 +8,7 @@ struct OrderData: Codable {
     }
 
     struct Fields: Codable {
-        let orderNo: String
+//        let orderNo: String?
         let customerName: String
         let drink: String
         let sugar: String
