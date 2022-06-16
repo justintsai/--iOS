@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -607,7 +608,7 @@
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="EPz-vy-6vg" id="PU4-Tw-dK3"/>
-                            <outlet property="delegate" destination="EPz-vy-6vg" id="xR9-jz-0WB"/>
+                            <outletCollection property="gestureRecognizers" destination="ELO-ui-LWZ" appends="YES" id="yiU-Q1-4yB"/>
                         </connections>
                     </tableView>
                     <size key="freeformSize" width="390" height="1075"/>
@@ -641,6 +642,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8RB-lt-mX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Gaf-aw-jXO" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="ELO-ui-LWZ">
+                    <connections>
+                        <action selector="tableTap:" destination="EPz-vy-6vg" id="kNF-Sn-bsY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2561.5384615384614" y="-295.37914691943126"/>
         </scene>
@@ -657,8 +663,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="k8z-52-bRG" kind="relationship" relationship="viewControllers" id="a6W-76-dv2"/>
-                        <segue destination="U0U-ke-rLo" kind="relationship" relationship="viewControllers" id="oQ3-dV-k21"/>
-                        <segue destination="xDA-4w-g9i" kind="relationship" relationship="viewControllers" id="cq3-6o-OZq"/>
+                        <segue destination="utg-wW-i0B" kind="relationship" relationship="viewControllers" id="aTc-ky-0o3"/>
+                        <segue destination="xDA-4w-g9i" kind="relationship" relationship="viewControllers" id="q4w-SC-R7c"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSJ-KP-BRm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -790,22 +796,99 @@
             <point key="canvasLocation" x="847.69230769230762" y="-377.48815165876778"/>
         </scene>
         <!--Order-->
-        <scene sceneID="eWx-Ng-zL0">
+        <scene sceneID="tNi-yP-xCe">
             <objects>
-                <viewController id="U0U-ke-rLo" userLabel="Order" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Sy0-4u-NT9">
+                <tableViewController id="utg-wW-i0B" userLabel="Order" customClass="OrderTableViewController" customModule="訂飲料" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Azf-x9-3fp">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="xiD-L0-OdA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="訂單" image="list.bullet.rectangle.portrait" catalog="system" selectedImage="list.bullet.rectangle.portrait.fill" id="Ld9-0S-quT" userLabel="訂單">
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell" rowHeight="120" id="XPh-qw-v3E" customClass="OrderTableViewCell" customModule="訂飲料" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XPh-qw-v3E" id="62z-fH-aZ4">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VfJ-3a-tGy">
+                                            <rect key="frame" x="20" y="0.0" width="350" height="120"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="zZ3-AJ-1Nx">
+                                                    <rect key="frame" x="0.0" y="15" width="278.33333333333331" height="90"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熟成紅茶M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pi4-3k-xRp">
+                                                            <rect key="frame" x="0.0" y="0.0" width="157" height="38.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                                                            <color key="textColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="半糖少冰 / 加白玉、百香蒟蒻凍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPM-Yl-2Oh">
+                                                            <rect key="frame" x="0.0" y="41.333333333333336" width="252.66666666666666" height="21.666666666666664"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                            <color key="textColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Justin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGi-C8-TmH">
+                                                            <rect key="frame" x="0.0" y="66" width="52.666666666666664" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <color key="textColor" name="lightblue"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="xdf-ma-sgy">
+                                                    <rect key="frame" x="278.33333333333331" y="19.333333333333336" width="71.666666666666686" height="81.333333333333314"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1杯" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTa-fU-r4b">
+                                                            <rect key="frame" x="0.0" y="0.0" width="71.666666666666671" height="38.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                            <color key="textColor" name="blue"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$40" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAe-gb-dZi">
+                                                            <rect key="frame" x="6.6666666666666856" y="39.333333333333329" width="65" height="42"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                            <color key="textColor" name="blue"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zZ3-AJ-1Nx" firstAttribute="top" secondItem="VfJ-3a-tGy" secondAttribute="top" constant="15" id="hof-Z3-uJ0"/>
+                                                <constraint firstAttribute="bottom" secondItem="zZ3-AJ-1Nx" secondAttribute="bottom" constant="15" id="vNp-e7-YbJ"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VfJ-3a-tGy" firstAttribute="top" secondItem="62z-fH-aZ4" secondAttribute="top" id="CDd-SY-u4G"/>
+                                        <constraint firstItem="VfJ-3a-tGy" firstAttribute="leading" secondItem="62z-fH-aZ4" secondAttribute="leadingMargin" id="ChN-Hb-2kh"/>
+                                        <constraint firstAttribute="bottom" secondItem="VfJ-3a-tGy" secondAttribute="bottom" id="ZZK-G2-M2a"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VfJ-3a-tGy" secondAttribute="trailing" id="mpj-8q-ZOE"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="countLabel" destination="sTa-fU-r4b" id="qSO-Ab-RCR"/>
+                                    <outlet property="customerLabel" destination="hGi-C8-TmH" id="ePh-9X-s0h"/>
+                                    <outlet property="detailLabel" destination="GPM-Yl-2Oh" id="wqp-6p-PQ4"/>
+                                    <outlet property="drinkLabel" destination="Pi4-3k-xRp" id="xTA-JJ-fDO"/>
+                                    <outlet property="totalLabel" destination="iAe-gb-dZi" id="w0T-ys-kUs"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="utg-wW-i0B" id="ihy-Qh-8zd"/>
+                            <outlet property="delegate" destination="utg-wW-i0B" id="F6E-oG-PsL"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="訂單" image="list.bullet.rectangle.portrait" catalog="system" selectedImage="list.bullet.rectangle.portrait.fill" id="aTD-1P-qF9" userLabel="訂單">
                         <color key="badgeColor" red="0.73631745579999996" green="0.58321237560000005" blue="0.35911756750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v83-HS-hhc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vss-gt-N4Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848" y="261"/>
+            <point key="canvasLocation" x="848" y="341"/>
         </scene>
         <!--Store-->
         <scene sceneID="kb9-Pg-DG3">

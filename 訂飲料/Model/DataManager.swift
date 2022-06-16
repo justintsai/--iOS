@@ -7,6 +7,7 @@ class DataManager {
     
     let baseID: String
     let apiKey: String
+    var drinks: [DrinkModel] = []
     
     init() {
         var fetchIdKey:[String] {
@@ -27,12 +28,8 @@ class DataManager {
         self.apiKey = fetchIdKey[1]
     }
     
-    func fetchMenu(tableName: String, completion: @escaping(Result<[DrinkCategory], Error>) -> Void) {
-
-//        let baseID = fetchIdKey[0]
-//        let apiKey = fetchIdKey[1]
-        
-        let urlString = "https://api.airtable.com/v0/\(baseID)/\(tableName)"
+    func fetchMenu(completion: @escaping (Result<[DrinkCategory], Error>) -> Void) {
+        let urlString = "https://api.airtable.com/v0/\(baseID)/Menu"
         if let url = URL(string: urlString) {
             var request = URLRequest(url: url)
             request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
@@ -41,8 +38,8 @@ class DataManager {
                     do {
                         let decoder = JSONDecoder()
                         let drinkData = try decoder.decode(DrinkData.self, from: data)
-                        let drinks = self.parseDrinkData(drinkData)
-                        let drinkCategories = self.getCategories(drinks)
+                        self.drinks = self.parseDrinkData(drinkData)
+                        let drinkCategories = self.getCategories(self.drinks)
                         completion(.success(drinkCategories))
                     } catch {
                         completion(.failure(error))
@@ -113,9 +110,12 @@ class DataManager {
     }
     
     // MARK: - Order
-    func uploadOrder(order: OrderModel) {
+    func uploadOrder(order: OrderModel, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         let orderData = serializeOrderModel(order)
-        let url = URL(string: "https://api.airtable.com/v0/\(baseID)/Order")!
+        guard let url = URL(string: "https://api.airtable.com/v0/\(baseID)/Order") else {
+            completion(.failure(.invalidUrl))
+            return
+        }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
@@ -127,31 +127,101 @@ class DataManager {
         request.httpBody = try? encoder.encode(orderData)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                completion(.failure(.requestFailed(error)))
                 return
             }
-            if let httpResponse = response as? HTTPURLResponse {
-                print("HTTP response status code: \(httpResponse.statusCode)")
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
             }
-            if let data = data, let content = String(data: data, encoding: .utf8) {
-                print(content)
+            guard data != nil else {
+                completion(.failure(.invalidData))
+                return
             }
+            completion(.success(true))
         }.resume()
     }
     
     func serializeOrderModel(_ order: OrderModel) -> OrderData {
         let orderData = OrderData(
-            records: [.init(fields: .init(
-                customerName: order.customerName,
-                drink: order.drink.name,
-                sugar: order.sugar,
-                ice: order.ice,
-                toppings: order.toppings,
-                count: order.count,
-                size: order.size,
-                total: order.total))]
+            records: [.init(
+                id: nil,
+                fields: .init(
+                    customerName: order.customerName,
+                    drink: order.drink.name,
+                    sugar: order.sugar,
+                    ice: order.ice,
+                    toppings: order.toppings,
+                    count: order.count,
+                    size: order.size,
+                    total: order.total))]
         )
         return orderData
     }
+    
+    func fetchOrder(completion: @escaping (Result<[OrderModel], Error>) -> Void) {
+        let urlString = "https://api.airtable.com/v0/\(baseID)/Order?sort[][field]=orderNo&sort[][direction]=asc"
+        if let url = URL(string: urlString) {
+            var request = URLRequest(url: url)
+            request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    do {
+                        let decoder = JSONDecoder()
+                        let orderData = try decoder.decode(OrderData.self, from: data)
+                        let orders = self.parseOrderData(orderData)
+                        completion(.success(orders))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                } else if let error = error {
+                    completion(.failure(error))
+                }
+            }.resume()
+        }
+    }
+    
+    func parseOrderData(_ orderData: OrderData) -> [OrderModel] {
+        var orders = [OrderModel]()
+        for record in orderData.records {
+            let toppings: [String]? = record.fields.toppings
+            let drink: DrinkModel = drinks.first(where: {$0.name == record.fields.drink})!
+            let order = OrderModel(
+                id: record.id,
+                customerName: record.fields.customerName,
+                drink: drink,
+                sugar: record.fields.sugar,
+                ice: record.fields.ice,
+                toppings: toppings,
+                count: record.fields.count,
+                size: record.fields.size,
+                total: record.fields.total
+            )
+            orders.append(order)
+        }
+        return orders
+    }
+    
+    func deleteOrder(_ order: OrderModel) {
+        if let url = URL(string: "https://api.airtable.com/v0/\(baseID)/Order/" + order.id!) {
+            var request = URLRequest(url: url)
+            request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "DELETE"
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let response = response as? HTTPURLResponse, error == nil {
+                    print(response.statusCode)
+                    print("Deleted successfully")
+                } else if let error = error {
+                    print(error)
+                }
+            }.resume()
+        }
+    }
 }
 
+enum NetworkError: Error {
+    case invalidUrl
+    case requestFailed(Error)
+    case invalidData
+    case invalidResponse
+}

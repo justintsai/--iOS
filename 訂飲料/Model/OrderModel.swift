@@ -1,7 +1,7 @@
 import Foundation
 
 struct OrderModel {
-    let orderNo: String? = nil
+    var id: String? = nil
     var customerName: String = ""
     var drink: DrinkModel
     var sugar: String

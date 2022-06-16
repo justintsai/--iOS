@@ -4,13 +4,12 @@ class MenuCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-//    var drinks: [DrinkModel] = []
     var drinkCategories:[DrinkCategory] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DataManager.shared.fetchMenu(tableName: "Menu") { result in
+        DataManager.shared.fetchMenu() { result in
             switch result {
             case .success(let drinkCategories):
                 self.updateUI(with: drinkCategories)
@@ -25,8 +24,8 @@ class MenuCollectionViewController: UIViewController {
     }
     
     func updateUI(with drinkCategories:[DrinkCategory]) {
+        self.drinkCategories = drinkCategories
         DispatchQueue.main.async {
-            self.drinkCategories = drinkCategories
             self.collectionView.reloadData()
         }
     }

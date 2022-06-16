@@ -22,16 +22,19 @@ class DrinkTableViewController: UITableViewController {
     @IBAction func sizeButtonPressed(_ sender: UIButton) {
         order.size = (sender.titleLabel?.text)!
         changeButtonColor(buttons: sizeButtons, selectedButtons: [sender])
+        view.endEditing(true)
     }
     
     @IBAction func iceButtonPressed(_ sender: UIButton) {
         order.ice = (sender.titleLabel?.text)!
         changeButtonColor(buttons: iceLevel, selectedButtons: [sender])
+        view.endEditing(true)
     }
     
     @IBAction func sugarButtonPressed(_ sender: UIButton) {
         order.sugar = (sender.titleLabel?.text)!
         changeButtonColor(buttons: sugarLevel, selectedButtons: [sender])
+        view.endEditing(true)
     }
     
     @IBAction func toppingButtonPressed(_ sender: UIButton) {
@@ -42,8 +45,13 @@ class DrinkTableViewController: UITableViewController {
         }
         order.toppings = selectedToppingButtons.map{($0.titleLabel?.text)!}
         changeButtonColor(buttons: toppingButtons, selectedButtons: selectedToppingButtons)
+        view.endEditing(true)
     }
     
+    // UITapGestureRecognizer
+    @IBAction func tableTap(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     
     init?(coder: NSCoder, selectedDrink: DrinkModel, order: OrderModel) {
         self.drink = selectedDrink
@@ -59,13 +67,16 @@ class DrinkTableViewController: UITableViewController {
         super.viewDidLoad()
 
         updateUI()
-        customerName.delegate = self
         customerName.addTarget(self, action: #selector(DrinkTableViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         order.customerName = customerName.text!
     }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//         view.endEditing(true)
+//    }
 
     func updateUI() {
         let url = drink.imageURL
@@ -123,12 +134,6 @@ class DrinkTableViewController: UITableViewController {
         }
     }
     
-}
-
-extension DrinkTableViewController: UITextFieldDelegate {
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-    }
 }
 
 //extension UIImageView {

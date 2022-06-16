@@ -21,13 +21,39 @@ class DrinkViewController: UIViewController {
     }
     @IBAction func placeOrderButtonPressed(_ sender: UIButton) {
         guard order.customerName != "" else {
-            let controller = UIAlertController(title: "請填入訂購人！", message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "確定", style: .default, handler: nil)
-            controller.addAction(action)
-            present(controller, animated: true, completion: nil)
+            showAlert(title: "請填入訂購人！", message: nil)
             return
         }
-        DataManager.shared.uploadOrder(order: order)
+        
+        var message = "\(order.drink.name) \(order.size) 共\(order.count)杯\n\(order.ice)\(order.sugar)"
+        if let toppings = order.toppings {
+            message += "\n加"
+            for i in 0..<toppings.count {
+                message += toppings[i]
+                if i < toppings.count - 1 && toppings.count > 1 {
+                    message += "、"
+                }
+            }
+        }
+        DataManager.shared.uploadOrder(order: order) { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.showAlert(title: "已送出訂單！🎉", message: message)
+                }
+            case .failure(let networkError):
+                switch networkError {
+                case .invalidUrl:
+                    print(networkError)
+                case .requestFailed(let error):
+                    print(networkError, error)
+                case .invalidData:
+                    print(networkError)
+                case .invalidResponse:
+                    print(networkError)
+                }
+            }
+        }
     }
     
     init?(coder: NSCoder, selectedDrink: DrinkModel) {
@@ -50,6 +76,13 @@ class DrinkViewController: UIViewController {
     
     func updatePriceLabel() {
         priceLabel.text = "小計：$\(order.total)"
+    }
+    
+    func showAlert(title: String, message: String?) {
+        let controller = UIAlertController(title: title, message: message ?? "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
+        controller.addAction(action)
+        present(controller, animated: true, completion: nil)
     }
     
     // MARK: - Segue
