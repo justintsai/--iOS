@@ -7,22 +7,34 @@ class OrderTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "更新資料中")
+        refreshControl?.addTarget(self, action: #selector(refreshOrder), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        refreshOrder()
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    @objc func refreshOrder() {
         DataManager.shared.fetchOrder() { result in
             switch result {
             case .success(let orders):
                 self.orders = orders
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.refreshControl!.endRefreshing()
+                    self.tableView.scrollToRow(at: [0, self.orders.count - 1], at: UITableView.ScrollPosition.bottom, animated: true)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source

@@ -5,7 +5,8 @@ class DrinkViewController: UIViewController {
     var drink: DrinkModel
     var order: OrderModel {
         didSet {
-            order.updateTotal(count: Int(stepper.value))
+            order.count = Int(stepper.value)
+            order.updateTotal(count: order.count)
             updatePriceLabel()
         }
     }
@@ -16,9 +17,10 @@ class DrinkViewController: UIViewController {
     @IBOutlet weak var stepper: UIStepper!
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        order.count = Int(sender.value)
+        order.count = Int(stepper.value)
         countLabel.text = "\(order.count) 杯"
     }
+    
     @IBAction func placeOrderButtonPressed(_ sender: UIButton) {
         guard order.customerName != "" else {
             showAlert(title: "請填入訂購人！", message: nil)
@@ -26,7 +28,7 @@ class DrinkViewController: UIViewController {
         }
         
         var message = "\(order.drink.name) \(order.size) 共\(order.count)杯\n\(order.ice)\(order.sugar)"
-        if let toppings = order.toppings {
+        if let toppings = order.toppings, toppings != [] {
             message += "\n加"
             for i in 0..<toppings.count {
                 message += toppings[i]
